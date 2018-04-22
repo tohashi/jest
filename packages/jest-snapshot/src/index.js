@@ -23,7 +23,7 @@ const fileExists = (filePath: Path, hasteFS: HasteFS): boolean =>
   hasteFS.exists(filePath) || fs.existsSync(filePath);
 
 const cleanup = (hasteFS: HasteFS, update: SnapshotUpdateState) => {
-  const pattern = '\\.' + utils.SNAPSHOT_EXTENSION + '$';
+  const pattern = '__snapshots__\\/.+\\' + utils.SNAPSHOT_EXTENSION + '$';
   const files = hasteFS.matchFiles(pattern);
   const filesRemoved = files
     .filter(
